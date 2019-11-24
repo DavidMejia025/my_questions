@@ -1,0 +1,13 @@
+server:
+  image: "test"
+  build:
+    context: .
+  volumes:
+    - .:/my_questions
+  networks:
+    - my_q
+  ports:
+    - "3000:3000"
+  restart:    "on-failure"
+  tty:        true
+  stdin_open: true

@@ -1,0 +1,20 @@
+version: '2.2'
+
+services:
+  database:
+    image: "postgres:9"
+    environment:
+      - POSTGRES_USER =     "postgres"
+      - POSTGRES_PASSWORD = "home12345"
+    networks:
+      - my_q
+    ports:
+      - "5432:5432"
+    volumes:
+       - db-data:/var/lib/postgresql/data
+    restart: "always"
+
+networks:
+  my_q:
+volumes:
+  db-data:
