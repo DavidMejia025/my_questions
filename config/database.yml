@@ -6,8 +6,8 @@ default: &default
   pool: <%= ENV['PREWORK_DATABASE_POOL_LIMIT'] || 4 %>
   host: localhost
   port: 5432
-  username: "postgres"
-  password: "home12345"
+  username: <%= ENV['DB_USER_NAME'] %>
+  password: <%= ENV["DB_PASSWORD"]  %>
 
 development:
   <<: *default
