@@ -1,5 +1,5 @@
 class RemoveColumnFromAnswer < ActiveRecord::Migration[5.2]
   def change
-    remove_column :answer, :question_id
+    remove_column :answers, :question_id
   end
 end

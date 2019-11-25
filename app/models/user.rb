@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string
+#  password_digest :string
+#  role            :integer
+#
+
 class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
