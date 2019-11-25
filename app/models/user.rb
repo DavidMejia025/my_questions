@@ -1,5 +1,9 @@
 class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
+
+  has_many :user_questions
+  has_many :answers
+  
   has_secure_password
 
   validates_presence_of :username, :password_digest
