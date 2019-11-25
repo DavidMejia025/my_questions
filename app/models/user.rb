@@ -25,4 +25,10 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :student
   end
+
+  def create_answer(params)
+puts "errererrrrrrrrrrr"
+    puts params
+    self.answers.create!(solution: params[:answer], user_question_id: params[:question_id])
+  end
 end

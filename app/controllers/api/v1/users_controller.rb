@@ -12,6 +12,10 @@ class Api::V1::UsersController < ApplicationController
     render json: @user, status: :ok
   end
 
+  def questions
+
+  end
+
   def update
     unless @user.update(user_params)
       render json: { errors: @user.errors.full_messages },
@@ -29,15 +33,6 @@ class Api::V1::UsersController < ApplicationController
     begin
       @user = User.find(params[:id])
     end
-  end
-
-  def admin_only
-    return true if @current_user.admin?
-
-    raise(
-      ExceptionHandler::AuthenticationError,
-      ("#{not_an_admin}")
-    )
   end
 
   def user_params

@@ -10,10 +10,22 @@ class ApplicationController < ActionController::API
 
     header = header.split(' ').last if header
 
+puts header
     begin
       @decoded = JwtService.decode(header)
 
       @current_user = User.find(@decoded[:user_id])
+      puts "user #{@current_user}.........................."
+@current_user
     end
+  end
+
+  def admin_only
+    return true if @current_user.admin?
+
+    raise(
+      ExceptionHandler::AuthenticationError,
+      ("#{not_an_admin}")
+    )
   end
 end

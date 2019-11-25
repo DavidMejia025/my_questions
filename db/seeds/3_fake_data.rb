@@ -18,8 +18,8 @@ end
 
 User.all.each do |user|
   user.questions.each do |question|
-    if rand(3) == 0
-      user_question = UserQuestion.where("user_id = ? OR question_id = ?", user.id, question.id).distinct
+    if rand(2) == 0
+      user_question = UserQuestion.where("user_id = ? OR question_id = ?", user.id, question.id).first
 
       answer = user.answers.create!(
         solution:         rand(2) == 0 ? "a" : "b",
