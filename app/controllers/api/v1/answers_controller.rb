@@ -5,7 +5,7 @@ class Api::V1::AnswersController < ApplicationController
     answer  = User.find(user_id).create_answer(answer_params)
     result  = answer.evaluate
 
-    head :ok
+    json_response({correct: result}.to_json)
   end
 
   def destroy

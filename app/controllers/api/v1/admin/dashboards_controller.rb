@@ -3,7 +3,7 @@ class Api::V1::Admin::DashboardsController < ApplicationController
   before_action :admin_only, except: %i[show create]
 
   def index
-    dashboard = Dashboard.new.get_data
+    dashboard = DashboardsService.new.get_data
 
     json_response(dashboard)
   end

@@ -15,6 +15,7 @@
 #              api_v1_question DELETE /api/v1/questions/:id(.:format)                                                          api/v1/questions#destroy
 #           api_v1_auth_signup POST   /api/v1/auth/signup(.:format)                                                            api/v1/auth/users#signup
 #            api_v1_auth_login POST   /api/v1/auth/login(.:format)                                                             api/v1/auth/users#login
+#      api_v1_admin_dashboards GET    /api/v1/admin/dashboards(.:format)                                                       api/v1/admin/dashboards#index
 #           rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 #    rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
 #           rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
@@ -22,13 +23,6 @@
 #         rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
 
 Rails.application.routes.draw do
-  namespace :api do
-    namespace :v1 do
-      namespace :admin do
-        get 'dashboards/index'
-      end
-    end
-  end
   namespace :api do
     namespace :v1 do
       resources :users, only: %i[index show update destroy] do
@@ -44,6 +38,10 @@ Rails.application.routes.draw do
       namespace :auth do
         post "signup", to: "users#signup"
         post "login",  to: "users#login"
+      end
+
+      namespace :admin do
+        resources :dashboards, only: :index
       end
     end
   end
