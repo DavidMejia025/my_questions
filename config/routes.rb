@@ -2,7 +2,7 @@
 #
 #                       Prefix Verb   URI Pattern                                                                              Controller#Action
 #        api_v1_user_questions GET    /api/v1/users/:user_id/questions(.:format)                                               api/v1/users#questions
-#  api_v1_user_single_question GET    /api/v1/users/:user_id/single_question(.:format)                                         api/v1/questions#single_question
+#         api_v1_user_question GET    /api/v1/users/:user_id/question(.:format)                                                api/v1/questions#question
 # api_v1_user_question_package GET    /api/v1/users/:user_id/question_package(.:format)                                        api/v1/questions#question_package
 #          api_v1_user_answers POST   /api/v1/users/:user_id/answers(.:format)                                                 api/v1/answers#create
 #           api_v1_user_answer DELETE /api/v1/users/:user_id/answers/:id(.:format)                                             api/v1/answers#destroy
@@ -24,9 +24,16 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      namespace :admin do
+        get 'dashboards/index'
+      end
+    end
+  end
+  namespace :api do
+    namespace :v1 do
       resources :users, only: %i[index show update destroy] do
         get "questions",        to: "users#questions"
-        get "single_question",  to: "questions#single_question"
+        get "question",         to: "questions#question"
         get "question_package", to: "questions#question_package"
 
         resources :answers, only: %i[create destroy]

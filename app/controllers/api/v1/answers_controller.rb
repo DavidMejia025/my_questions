@@ -3,6 +3,7 @@ class Api::V1::AnswersController < ApplicationController
     user_id = params[:user_id]
 
     answer  = User.find(user_id).create_answer(answer_params)
+    result  = answer.evaluate
 
     head :ok
   end

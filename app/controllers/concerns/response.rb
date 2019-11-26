@@ -19,14 +19,11 @@ module Response
 
   def build_options(question)
     options = question.question_options.reduce([]) do |accu, option|
-      puts option.identifier
-      puts  option.description
        accu = accu.push({
          identifier: option.identifier,
          text:       option.description
        })
-       puts "!!!!"
-puts accu
+
        accu
      end
 
