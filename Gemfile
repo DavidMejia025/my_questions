@@ -16,7 +16,7 @@ gem 'httparty'
 #get fake data
 gem 'faker'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # annotate db templates
 gem 'annotate'
 # jwt gem
